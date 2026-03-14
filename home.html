@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Issue Tracker - Home</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- DaisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<!-- Font awsome  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body class="bg-base-200 min-h-screen">
+       <header class="flex items-center bg-base-200 py-3 px-3 justify-between shadow-md" >
+    
+       <!-- left side of Nav -->
+        <div class="flex items-center">
+        <p><i class="fa-brands fa-github text-3xl"></i></p>
+        <h2>GitHub Issues Tracker</h2>
+        </div>
+
+
+        <!-- right side of Nav -->
+        <div class="flex">
+          <!-- searchbox -->
+          <label class="input">
+              <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke-width="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input type="search" id="search-input" required placeholder="Search issues..." />
+          </label>
+
+          <!-- + new issue button -->
+              <button onclick="searchIssues()" class="btn mx-2 bg-purple-800 text-white" >🔍Search</button>
+        </div>
+      </header>
+
+
+
+      <div class="summary">
+        <!-- Mid part -->
+       <section class="flex bg-white my-10 space-x-2 pl-9 w-11/12 mx-auto shadow-md rounded-xl">
+
+                <button 
+                onclick="switchTab('all')"
+                id="tab-all" class="btn w-[120px] my-5 mx-1">All</button>
+                <button
+                onclick="switchTab('open')"
+                 id="tab-open" class="btn  w-[120px] my-5 mx-1 ">Open</button>
+                <button
+                onclick="switchTab('closed')"
+                 id="tab-closed" class="btn  w-[120px] my-5 mx-1">Closed</button>
+      
+       </section>
+        <!-- Details headline part -->
+        <div class="flex justify-between bg-white w-11/12 mx-auto space-x-2 pl-9 shadow-xl rounded-t-md">
+          
+          <!-- left side -->
+          <div class="flex py-[24px]">
+          <p class="bg-purple-100 p-3 rounded-full">
+          <i class="fa-solid fa-circle-dot text-purple-600 text-2xl"></i>
+          </p>
+          <div class="pl-2">
+            <h1 class=""><span id="state">0</span> Issues</h1>
+            <p class="opacity-40">Track and manage your project issues</p>
+          </div>
+          </div>
+          <!-- right side -->
+          <div class="flex items-center space-x-4 pr-5">
+            <p><span><i class="fa-solid fa-circle text-xs text-green-500"></i></span> Open</p>
+            <p><span><i class="fa-solid fa-circle text-xs text-purple-600"></i> Closed</span></p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- issue container all -->
+      <div 
+      id="all-container" class=" hidden grid grid-cols-4 border bg-slate-100 w-11/12 justify-center mx-auto border-white py-4 px-2 rounded-b-md shadow-2xl ">  
+ 
+      </div>
+
+       <div id="all-container" class="hidden grid grid-cols-4 border bg-slate-100 w-11/12 mx-auto border-white py-4 px-2 rounded-b-md shadow-2xl gap-2">
+  </div>
+
+      <div
+        id="open-container" class=" hidden grid grid-cols-4 border bg-slate-100 w-11/12 justify-center mx-auto border-white py-4 px-2 rounded-b-md shadow-2xl ">   
+         </div>
+
+         <div
+        id="closed-container" class=" hidden grid grid-cols-4 border bg-slate-100 w-11/12 justify-center mx-auto border-white py-4 px-2 rounded-b-md shadow-2xl ">    
+  
+      </div>
+
+      
+      
+
+  <script src="./script/script.js"></script>
+</body>
+</html>

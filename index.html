@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Issue Tracker - Login</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- DaisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<!-- Font awsome  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body class="bg-base-200 min-h-screen">
+
+  <!-- Nav bar  -->
+   <section class="login pt-10">
+    <fieldset class=" bg-white fieldset border-base-300 rounded-box w-xs border p-4 shadow-lg justify-center mx-auto my-5">
+      <p class="justify-center mx-auto"><i class="fa-brands fa-github text-4xl"></i></p>
+      <h2 class="text-xl font-bold">GitHub Issues Tracker</h2>
+      <p>Sign in to manage your issues</p>
+  
+  <input id="input-username"  type="User Name" class="input" placeholder="User Name" />
+  <p class="text-purple-600 pb-5">Default: admin</p>
+
+
+  <input id="input-password" type="password" class="input" placeholder="Password" />
+  <p class="text-purple-600 pb-5">Default: admin123</p>
+
+
+ <button id="signin-btn" class=" bg-purple-800 btn btn-primary mt-4">Sign In</button>
+
+  <div class="flex items-center my-4">
+    <hr class="flex-grow border-gray-300">
+    <span class="mx-4 text-gray-500">OR</span>
+    <hr class="flex-grow border-gray-300">
+</div>
+
+<p class="flex items-center mx-auto font-sm opacity-40">Demo Credentials:</p>
+<p><span class="font-bold">Username:</span> admin <br>
+<p><span class="font-bold">Password:</span> admin123 <br>
+
+</fieldset>
+
+ </section>
+
+  <script src="./script/script.js"></script>
+  <script src="./script/login.js"></script>
+</body>
+</html>
