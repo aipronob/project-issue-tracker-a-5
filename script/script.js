@@ -6,7 +6,6 @@ const allContainer = document.getElementById("all-container")
 const openContainer = document.getElementById("open-container")
 const closedContainer = document.getElementById("closed-container")
 
-// console.log(allContainer, openContainer, closedContainer)
 
 // State update
 
@@ -137,24 +136,24 @@ const displayissues = (issues, containerId) => {
      issuecard.className = "h-full p-2";
     issuecard.innerHTML=`
 
-      <div class="border border-gray-100 mx-2 p-2 shadow-md bg-white rounded-xl flex flex-col gap-3 h-full justify-between"
+      <div onclick="loadIssueDetail(${issue.id})" class="border border-gray-100 mx-2 p-2 shadow-md bg-white rounded-xl flex flex-col gap-3 h-full justify-between cursor-pointer"    // মডালের জাদু এইখানেই , div এর কানে ধরে modal  এর সাথে বিয়া দিতে হবে।
          style="border-top: 3px solid ${issue.status === 'closed' ? '#a855f7' : '#22c55e'};">
                 
           <div class="flex items-center justify-between">
             ${statusIcon(issue.status)}
              
-              <span style="${priorityColor(issue.priority)} font-weight:700; font-size:0.75rem; padding:4px 12px; border-radius:999px;">
+             <span style="${priorityColor(issue.priority)} font-weight:700; font-size:0.75rem; padding:4px 12px; border-radius:999px;">
              ${issue.priority.toUpperCase()}
-               </span>
-                </div>
+             </span>
+             </div>
 
-                <h1 class="font-bold text-gray-900 text-base leading-snug" style="display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">${issue.title}</h1>
+             <h1 class="font-bold text-gray-900 text-base leading-snug" style="display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">${issue.title}</h1>
 
       
-                <p class="text-gray-500 text-sm leading-5"
-                   style="display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
-                    ${issue.description}
-                </p>
+             <p class="text-gray-500 text-sm leading-5"
+             style="display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
+             ${issue.description}
+             </p>
 
                 <div class="flex gap-2 flex-wrap">
 
@@ -212,5 +211,9 @@ const searchIssues = () => {
 
     updateCount(currenttab);
 } 
+
+const openModal = () => {}
+
+
 loadissues();
 switchTab(currenttab);

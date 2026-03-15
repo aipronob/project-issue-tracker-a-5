@@ -48,8 +48,6 @@
         </div>
       </header>
 
-
-
       <div class="summary">
         <!-- Mid part -->
        <section class="flex bg-white my-10 space-x-2 pl-9 w-11/12 mx-auto shadow-md rounded-xl">
@@ -66,12 +64,12 @@
       
        </section>
         <!-- Details headline part -->
-        <div class="flex justify-between bg-white w-11/12 mx-auto space-x-2 pl-9 shadow-xl rounded-t-md">
+        <div class="flex justify-between bg-white w-11/12 mx-auto pl-5 shadow-xl rounded-t-md">
           
           <!-- left side -->
-          <div class="flex py-[24px]">
-          <p class="bg-purple-100 p-3 rounded-full">
-          <i class="fa-solid fa-circle-dot text-purple-600 text-2xl"></i>
+          <div class="flex py-[24px] items-center">
+          <p class="bg-purple-100 p-2 rounded-full">
+          <i class="fa-solid fa-circle-dot text-purple-600 text-2xl p-1 "></i>
           </p>
           <div class="pl-2">
             <h1 class=""><span id="state">0</span> Issues</h1>
@@ -95,9 +93,6 @@
  
       </div>
 
-       <div id="all-container" class="hidden grid grid-cols-4 border bg-slate-100 w-11/12 mx-auto border-white py-4 px-2 rounded-b-md shadow-2xl gap-2">
-  </div>
-
       <div
         id="open-container" class=" hidden grid grid-cols-4 border bg-slate-100 w-11/12 justify-center mx-auto border-white py-4 px-2 rounded-b-md shadow-2xl ">   
          </div>
@@ -108,16 +103,22 @@
       </div>
 
       <!-- modal  -->
-      
-<!-- Open the modal using ID.showModal() method -->
-<button class="btn" onclick="my_modal_5.showModal()">open modal</button>
+      <!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
 <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
     <h3 class="text-lg font-bold">Hello!</h3>
     <p class="py-4">Press ESC key or click the button below to close</p>
     <div class="modal-action">
+     
+     
+     
+     
+     
+     
+     
       <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
+       
         <button class="btn">Close</button>
       </form>
     </div>
