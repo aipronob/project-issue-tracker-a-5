@@ -48,6 +48,8 @@
         </div>
       </header>
 
+
+
       <div class="summary">
         <!-- Mid part -->
        <section class="flex bg-white my-10 space-x-2 pl-9 w-11/12 mx-auto shadow-md rounded-xl">
@@ -93,6 +95,7 @@
  
       </div>
 
+
       <div
         id="open-container" class=" hidden grid grid-cols-4 border bg-slate-100 w-11/12 justify-center mx-auto border-white py-4 px-2 rounded-b-md shadow-2xl ">   
          </div>
@@ -102,28 +105,52 @@
   
       </div>
 
-      <!-- modal  -->
-      <!-- Open the modal using ID.showModal() method -->
-<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
-<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-    <h3 class="text-lg font-bold">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-    <div class="modal-action">
-     
-     
-     
-     
-     
-     
-     
-      <form method="dialog">
-       
-        <button class="btn">Close</button>
-      </form>
+
+
+<!-- Open the modal using ID.showModal() method -->
+<div id="issue-modal" class="hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+  
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6 flex flex-col gap-4 relative">
+
+    <!-- Title -->
+    <h2 id="modal-title" class="text-2xl font-bold text-gray-900 pr-6"></h2>
+
+    <!-- Status + Author + Date row -->
+    <div class="flex items-center gap-2 text-sm text-gray-500 flex-wrap">
+      <span id="modal-status-badge" class="text-white text-xs font-bold px-3 py-1 rounded-full"></span>
+      <span>•</span>
+      <span id="modal-author-text"></span>
+      <span>•</span>
+      <span id="modal-date-text"></span>
     </div>
+
+    <!-- Labels -->
+    <div id="modal-labels" class="flex gap-2 flex-wrap"></div>
+
+    <!-- Description -->
+    <p id="modal-description" class="text-gray-600 text-sm leading-6"></p>
+
+    <!-- Assignee + Priority box -->
+    <div class="bg-gray-50 rounded-xl p-4 flex justify-between items-center mt-1">
+      <div class="flex flex-col gap-1">
+        <span class="text-xs text-gray-400">Assignee:</span>
+        <span id="modal-assignee" class="font-bold text-gray-800 text-sm"></span>
+      </div>
+      <div class="flex flex-col gap-1 items-end">
+        <span class="text-xs text-gray-400">Priority:</span>
+        <span id="modal-priority-badge" class="text-white text-xs font-bold px-3 py-1 rounded-full"></span>
+      </div>
+    </div>
+
+    <!-- Close Button -->
+    <div class="flex justify-end mt-1">
+      <button onclick="closeModal()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-xl transition-colors">
+        Close
+      </button>
+    </div>
+
   </div>
-</dialog>
+</div>
 
 
   <script src="./script/script.js"></script>

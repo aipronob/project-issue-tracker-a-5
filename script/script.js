@@ -7,6 +7,7 @@ const openContainer = document.getElementById("open-container")
 const closedContainer = document.getElementById("closed-container")
 
 
+
 // State update
 
 const stat = document.getElementById("state")
@@ -77,26 +78,27 @@ for (const page of pages) {     // tab to page
 // ৪। json data k displayissues er ভিতর নিলাম, 
 // ৫। তার আগে displayissues ekta function create kore nilam, console log করে দেক্লাম ভালবাসে কি না।
 
-let allissuesArra = []
+let allissues = []
 const loadissues = () => {
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
-  .then(res => res.json())
 
+  .then(res => res.json())
   // .then((json) => {displayissues(json.data)
   // allissuesArra = (json.data);
   // updateCount(currenttab);
   // });
 
   .then((json) => {
-  allissuesArra = json.data;
+  allissues = json.data;
 
-  const openIssues = allissuesArra.filter(issue => issue.status === "open");
-  const closedIssues = allissuesArra.filter(issue => issue.status === "closed");
+  const openIssues = allissues.filter(issue => issue.status === "open");
+  const closedIssues = allissues.filter(issue => issue.status === "closed");
 
-  displayissues(allissuesArra, "all-container"); 
+  displayissues(allissues, "all-container"); 
   displayissues(openIssues, "open-container");      
   displayissues(closedIssues, "closed-container");   
-  switchTab(currenttab);  // moved here
+  switchTab(currenttab);
+
 });
 };
 
@@ -155,25 +157,23 @@ const displayissues = (issues, containerId) => {
              ${issue.description}
              </p>
 
-                <div class="flex gap-2 flex-wrap">
+              <div class="flex gap-2 flex-wrap">
 
-                    ${issue.labels?.[0] ? `
-                        <span style="background-color:#fff0f0; border:1.5px solid #f87171; color:#ef4444; font-weight:700; font-size:0.75rem; padding:4px 12px; border-radius:999px; display:inline-flex; align-items:center; gap:4px;">
-                            <i class="fa-solid fa-bug"></i> ${issue.labels[0]}
-                        </span>
-                    ` : ""}
+              ${issue.labels?.[0] ? `
+              <span style="background-color:#fff0f0; border:1.5px solid #f87171; color:#ef4444; font-weight:700; font-size:0.75rem; padding:4px 12px; border-radius:999px; display:inline-flex; align-items:center; gap:4px;">
+              <i class="fa-solid fa-bug"></i> ${issue.labels[0]}
+              </span>
+              ` : ""}
+              ${issue.labels?.[1] ? `
+              <span style="background-color:#fefce8; border:1.5px solid #d97706; color:#d97706; font-weight:700; font-size:0.75rem; padding:4px 12px; border-radius:999px; display:inline-flex; align-items:center; gap:4px;">
+              <i class="fa-solid fa-life-ring"></i> ${issue.labels[1]}
+              </span>
+              ` : ""}
+              </div>
 
-                    ${issue.labels?.[1] ? `
-                        <span style="background-color:#fefce8; border:1.5px solid #d97706; color:#d97706; font-weight:700; font-size:0.75rem; padding:4px 12px; border-radius:999px; display:inline-flex; align-items:center; gap:4px;">
-                            <i class="fa-solid fa-life-ring"></i> ${issue.labels[1]}
-                        </span>
-                    ` : ""}
+              <hr class="border-gray-300">
 
-                </div>
-
-                    <hr class="border-gray-300">
-
-                                <div class="text-xs text-gray-400 flex flex-col gap-1">
+              <div class="text-xs text-gray-400 flex flex-col gap-1">
                     <p>#${issue.id ?? ""} by <span class="text-gray-600 font-medium">${issue.author}</span></p>
                     <p>${new Date(issue.updatedAt).toLocaleDateString('en-US')}</p>
                 </div>
@@ -189,11 +189,10 @@ const displayissues = (issues, containerId) => {
 
   };
   
-
 const searchIssues = () => {
     const query = document.getElementById("search-input").value.toLowerCase();
 
-    const filtered = allissuesArra.filter(issue => 
+    const filtered = allissues.filter(issue => 
         issue.title.toLowerCase().includes(query) ||
         issue.description.toLowerCase().includes(query) ||
         issue.author.toLowerCase().includes(query)
@@ -210,10 +209,74 @@ const searchIssues = () => {
     }
 
     updateCount(currenttab);
+
 } 
 
-const openModal = () => {}
 
+// Modal part
+
+const loadIssueDetail = (id) => {
+  const issue = allissues.find(i => i.id == id);
+  if (!issue) return;
+
+  // Title
+  document.getElementById("modal-title").innerText = issue.title;
+
+  // Status badge
+  const statusBadge = document.getElementById("modal-status-badge");
+  statusBadge.innerText = issue.status === "open" ? "Opened" : "Closed";
+  statusBadge.style.cssText = issue.status === "open"
+    ? "background-color:#22c55e;"
+    : "background-color:#a855f7;";
+
+  // Author & Date
+  document.getElementById("modal-author-text").innerText = `Opened by ${issue.author}`;
+  document.getElementById("modal-date-text").innerText = new Date(issue.updatedAt).toLocaleDateString('en-GB').replace(/\//g, '/');
+
+  // Assignee
+  document.getElementById("modal-assignee").innerText = issue.author;
+
+  // Priority badge
+  const priorityBadge = document.getElementById("modal-priority-badge");
+  priorityBadge.innerText = issue.priority.toUpperCase();
+  priorityBadge.style.cssText = issue.priority === "high"
+    ? "background-color:#ef4444;"
+    : issue.priority === "medium"
+    ? "background-color:#f97316;"
+    : "background-color:#6b7280;";
+
+  // Description
+  document.getElementById("modal-description").innerText = issue.description;
+
+  // Labels
+  const labelsEl = document.getElementById("modal-labels");
+  labelsEl.innerHTML = "";
+  if (issue.labels?.[0]) {
+    labelsEl.innerHTML += `<span style="border:1.5px solid #f87171; color:#ef4444; font-weight:700; font-size:0.75rem; padding:4px 12px; border-radius:999px; display:inline-flex; align-items:center; gap:4px;">
+      <i class="fa-solid fa-bug"></i> ${issue.labels[0].toUpperCase()}
+    </span>`;
+  }
+  if (issue.labels?.[1]) {
+    labelsEl.innerHTML += `<span style="border:1.5px solid #d97706; color:#d97706; font-weight:700; font-size:0.75rem; padding:4px 12px; border-radius:999px; display:inline-flex; align-items:center; gap:4px;">
+      <i class="fa-solid fa-life-ring"></i> ${issue.labels[1].toUpperCase()}
+    </span>`;
+  }
+
+  // Show modal
+  document.getElementById("issue-modal").classList.remove("hidden");
+}
+
+const closeModal = () => {
+  document.getElementById("issue-modal").classList.add("hidden");
+}
+
+// Close on backdrop click
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("issue-modal").addEventListener("click", (e) => {
+    if (e.target === document.getElementById("issue-modal")) closeModal();
+  });
+});
 
 loadissues();
 switchTab(currenttab);
+
